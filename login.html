@@ -71,6 +71,21 @@
       font-size: 13px;
       color: #555;
     }
+
+    .forgot-pass {
+      margin-top: 12px;
+      text-align: right;
+    }
+
+    .forgot-pass a {
+      font-size: 13px;
+      color: #127F99;
+      text-decoration: none;
+    }
+
+    .forgot-pass a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -85,6 +100,9 @@
         <label for="password">Kata Sandi</label>
         <input type="password" id="password" placeholder="Masukkan Password" required />
       </div>
+      <div class="forgot-pass">
+        <a href="reset-password.html">Lupa Password?</a>
+      </div>
       <button class="btn" type="submit">Masuk</button>
     </form>
     <div class="footer-text">© 2025 Panel Admin Raja Game</div>
@@ -93,15 +111,18 @@
   <script>
     function loginAdmin(e) {
       e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      const inputUsername = document.getElementById('username').value.trim();
+      const inputPassword = document.getElementById('password').value.trim();
 
-      // Ganti ini sesuai kebutuhan
-      const validUsername = 'admin';
-      const validPassword = '123456';
+      const petugasList = JSON.parse(localStorage.getItem('petugasList')) || [];
 
-      if (username === validUsername && password === validPassword) {
+      const user = petugasList.find(p =>
+        p.username === inputUsername && p.password === inputPassword
+      );
+
+      if (user) {
         localStorage.setItem('adminLoggedIn', 'true');
+        localStorage.setItem('adminName', user.nama);
         window.location.href = "index.html";
       } else {
         alert("Username atau Password salah!");
