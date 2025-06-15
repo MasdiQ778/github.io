@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artikel - MasdiQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+    }
+
+    header {
+      background-color: #161b22;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid #127F99;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: #127F99;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      font-style: italic;
+      color: #8b949e;
+    }
+
+    nav {
+      background: #21262d;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #127F99;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .card {
+      background: #21262d;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: #58a6ff;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #8b949e;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #127F99;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #161b22;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #8b949e;
+      border-top: 2px solid #127F99;
+    }
+
+    footer a {
+      color: #58a6ff;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MasdiQ</h1>
+    <p>Kumpulan Artikel Teknologi Terkini</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="artikel.html">Artikel</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+
+  <section class="articles">
+    <div class="card">
+      <h3>AI dan Masa Depan Pekerjaan</h3>
+      <p>Apakah AI akan menggantikan manusia atau justru menciptakan lebih banyak lapangan kerja?</p>
+      <a href="#">Baca Selengkapnya</a>
+    </div>
+    <div class="card">
+      <h3>Blockchain Lebih dari Sekadar Kripto</h3>
+      <p>Penerapan blockchain di bidang logistik, kesehatan, dan pendidikan.</p>
+      <a href="#">Baca Selengkapnya</a>
+    </div>
+    <div class="card">
+      <h3>React vs Vue vs Angular</h3>
+      <p>Framework front-end mana yang cocok untuk kebutuhanmu?</p>
+      <a href="#">Baca Selengkapnya</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 MasdiQ | Powered by Passion for Technology</p>
+  </footer>
+</body>
+</html>
