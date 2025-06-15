@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MasdiQ - Blog Teknologi</title>
+  <title>MasdiQ - Beranda</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     * {
@@ -55,33 +55,28 @@
       color: #127F99;
     }
 
-    .hero {
-      text-align: center;
-      padding: 50px 20px;
-      background: linear-gradient(to right, #127F99, #58a6ff);
-      color: #fff;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-    }
-
-    .articles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+    .content {
       padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .content h2 {
+      color: #58a6ff;
+      margin-bottom: 15px;
+    }
+
+    .content p {
+      color: #8b949e;
+      font-size: 1rem;
+      margin-bottom: 25px;
     }
 
     .card {
       background: #21262d;
       border-radius: 10px;
       padding: 20px;
+      margin-bottom: 20px;
       transition: transform 0.2s ease;
     }
 
@@ -95,16 +90,15 @@
     }
 
     .card p {
-      font-size: 0.95rem;
       color: #8b949e;
     }
 
     .card a {
-      display: inline-block;
-      margin-top: 15px;
       color: #127F99;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
     }
 
     footer {
@@ -116,20 +110,14 @@
       border-top: 2px solid #127F99;
     }
 
-    footer a {
-      color: #58a6ff;
-      margin: 0 8px;
-      text-decoration: none;
-    }
-
     @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 1.5rem;
-      }
-
       nav {
         flex-direction: column;
         gap: 10px;
+      }
+
+      .content {
+        padding: 20px;
       }
     }
   </style>
@@ -141,40 +129,37 @@
   </header>
 
   <nav>
-    <a href="#">Beranda</a>
+    <a href="index.html">Beranda</a>
     <a href="artikel.html">Artikel</a>
-    <a href="#">Tentang</a>
-    <a href="#">Kontak</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
   </nav>
 
-  <section class="hero">
+  <section class="content">
     <h2>Selamat datang di MasdiQ!</h2>
-    <p>Jelajahi dunia teknologi terbaru, AI, gadget, coding, dan inovasi digital</p>
-  </section>
+    <p>Jelajahi dunia teknologi terbaru, AI, gadget, coding, dan inovasi digital.</p>
 
-  <section class="articles">
     <div class="card">
       <h3>5 Tren Teknologi Tahun 2025</h3>
       <p>Mulai dari AI generatif hingga quantum computing — inilah yang perlu kamu tahu.</p>
       <a href="#">Baca Selengkapnya</a>
     </div>
+
     <div class="card">
       <h3>Cara Membangun Website Modern</h3>
       <p>Panduan langkah demi langkah membangun situs keren dengan HTML, CSS, dan JS.</p>
       <a href="#">Baca Selengkapnya</a>
     </div>
+
     <div class="card">
       <h3>Review Gadget: Laptop Terbaik 2025</h3>
-      <p>Kami uji performa, baterai, dan desain dari laptop-laptop terbaik tahun ini.</p>
+      <p>Temukan laptop terbaik untuk produktivitas, gaming, dan desain grafis tahun ini.</p>
       <a href="#">Baca Selengkapnya</a>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 MasdiQ | Dibuat dengan ♥ untuk penggemar teknologi</p>
-    <div>
-      <a href="#">Instagram</a> | <a href="#">YouTube</a> | <a href="#">GitHub</a>
-    </div>
+    <p>© 2025 MasdiQ | Powered by Passion for Technology</p>
   </footer>
 </body>
 </html>
