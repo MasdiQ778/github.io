@@ -3,163 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MasdiQ - Beranda</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <title>Panel Admin - Raja Game</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Open Sans', sans-serif;
-    }
-
     body {
-      background: #0d1117;
-      color: #c9d1d9;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #e6f2f7;
     }
-
-    header {
-      background-color: #161b22;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 3px solid #127F99;
-    }
-
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: #127F99;
-      font-size: 2.5rem;
-    }
-
-    header p {
-      font-style: italic;
-      color: #8b949e;
-    }
-
-    nav {
-      background: #21262d;
+    .container {
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 0;
+      min-height: 100vh;
     }
-
-    nav a {
-      color: #58a6ff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #127F99;
-    }
-
-    .content {
-      padding: 30px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .content h2 {
-      color: #58a6ff;
-      margin-bottom: 15px;
-    }
-
-    .content p {
-      color: #8b949e;
-      font-size: 1rem;
-      margin-bottom: 25px;
-    }
-
-    .card {
-      background: #21262d;
-      border-radius: 10px;
+    .sidebar {
+      width: 220px;
+      background-color: #0b708c;
+      color: white;
       padding: 20px;
+    }
+    .sidebar h2 {
+      font-size: 20px;
       margin-bottom: 20px;
-      transition: transform 0.2s ease;
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
-      color: #58a6ff;
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 6px;
       margin-bottom: 10px;
     }
-
-    .card p {
-      color: #8b949e;
+    .sidebar a:hover {
+      background-color: #095c72;
     }
-
-    .card a {
-      color: #127F99;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
+    .main-content {
+      flex: 1;
+      padding: 20px;
+    }
+    .panel {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .panel h1 {
+      background-color: #0b708c;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 6px;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #0b708c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #095c72;
+    }
+    .bubble {
+      background: #f2f2f2;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 10px;
     }
-
-    footer {
-      background: #161b22;
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
       text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #8b949e;
-      border-top: 2px solid #127F99;
     }
-
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .content {
-        padding: 20px;
-      }
+    th {
+      background-color: #0b708c;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>MasdiQ</h1>
-    <p>Blog Teknologi | Inovasi | Masa Depan</p>
-  </header>
-
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="artikel.html">Artikel</a>
-    <a href="tentang.html">Tentang</a>
-    <a href="kontak.html">Kontak</a>
-  </nav>
-
-  <section class="content">
-    <h2>Selamat datang di MasdiQ!</h2>
-    <p>Jelajahi dunia teknologi terbaru, AI, gadget, coding, dan inovasi digital.</p>
-
-    <div class="card">
-      <h3>5 Tren Teknologi Tahun 2025</h3>
-      <p>Mulai dari AI generatif hingga quantum computing — inilah yang perlu kamu tahu.</p>
-      <a href="#">Baca Selengkapnya</a>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Menu Admin</h2>
+      <a href="profil.html">Profil Admin</a>
+      <a href="ganti-password.html">Ganti Password</a>
+      <a href="data-petugas.html">Data Petugas</a>
+      <a href="log-aktivitas.html">Log Aktivitas</a>
+      <a href="login.html">Logout</a>
     </div>
+    <div class="main-content">
+      <div class="panel">
+        <h1>Panel Admin - Raja Game</h1>
 
-    <div class="card">
-      <h3>Cara Membangun Website Modern</h3>
-      <p>Panduan langkah demi langkah membangun situs keren dengan HTML, CSS, dan JS.</p>
-      <a href="#">Baca Selengkapnya</a>
+        <input type="text" id="nama" placeholder="Nama" />
+        <input type="number" id="durasi" placeholder="Durasi (jam)" />
+        <button onclick="mulaiBilling()">Mulai Billing</button>
+        <button onclick="exportExcel()">Export Excel</button>
+        <button onclick="exportPDF()">Export PDF</button>
+        <button onclick="hapusHistory()">Hapus History</button>
+
+        <h3>Billing Aktif</h3>
+        <div id="billingAktif"></div>
+
+        <h3>History Billing Hari Ini</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Mulai</th>
+              <th>Selesai</th>
+              <th>Durasi</th>
+              <th>Total Harga</th>
+            </tr>
+          </thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <h3>Review Gadget: Laptop Terbaik 2025</h3>
-      <p>Temukan laptop terbaik untuk produktivitas, gaming, dan desain grafis tahun ini.</p>
-      <a href="#">Baca Selengkapnya</a>
-    </div>
-  </section>
+  <script>
+    const hargaPerJam = 5000;
+    let billingList = JSON.parse(localStorage.getItem("billingList")) || [];
 
-  <footer>
-    <p>© 2025 MasdiQ | Powered by Passion for Technology</p>
-  </footer>
+    function mulaiBilling() {
+      const nama = document.getElementById("nama").value;
+      const durasi = parseInt(document.getElementById("durasi").value);
+      if (!nama || !durasi) return alert("Isi nama dan durasi!");
+
+      const mulai = new Date();
+      const selesai = new Date(mulai.getTime() + durasi * 60 * 60 * 1000);
+
+      const billing = { nama, mulai: mulai.toISOString(), selesai: selesai.toISOString(), durasi };
+      billingList.push(billing);
+      localStorage.setItem("billingList", JSON.stringify(billingList));
+      renderBillingAktif();
+    }
+
+    function hapusHistory() {
+      localStorage.removeItem("billingList");
+      billingList = [];
+      renderBillingAktif();
+    }
+
+    function renderBillingAktif() {
+      const now = new Date();
+      const aktifDiv = document.getElementById("billingAktif");
+      const tableBody = document.getElementById("historyTable");
+      aktifDiv.innerHTML = "";
+      tableBody.innerHTML = "";
+
+      let no = 1;
+      billingList.forEach((bill, index) => {
+        const mulai = new Date(bill.mulai);
+        const selesai = new Date(bill.selesai);
+
+        if (selesai > now) {
+          const sisa = selesai - now;
+          const jam = Math.floor(sisa / (1000 * 60 * 60));
+          const menit = Math.floor((sisa % (1000 * 60 * 60)) / (1000 * 60));
+          const detik = Math.floor((sisa % (1000 * 60)) / 1000);
+
+          const totalHarga = bill.durasi * hargaPerJam;
+
+          aktifDiv.innerHTML += `
+            <div class="bubble">
+              <b>${bill.nama}</b><br>
+              Sisa: ${jam}j ${menit}m ${detik}d<br>
+              Total: Rp ${totalHarga.toLocaleString()}<br>
+              <button onclick="selesaikanBilling(${index})">Selesai</button>
+            </div>
+          `;
+        } else {
+          const totalHarga = bill.durasi * hargaPerJam;
+          tableBody.innerHTML += `
+            <tr>
+              <td>${no++}</td>
+              <td>${bill.nama}</td>
+              <td>${new Date(bill.mulai).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+              <td>${new Date(bill.selesai).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+              <td>${bill.durasi} jam</td>
+              <td>Rp ${totalHarga.toLocaleString()}</td>
+            </tr>
+          `;
+        }
+      });
+    }
+
+    function selesaikanBilling(index) {
+      const now = new Date();
+      billingList[index].selesai = now.toISOString();
+      localStorage.setItem("billingList", JSON.stringify(billingList));
+      renderBillingAktif();
+    }
+
+    function exportExcel() {
+      alert("Fitur export Excel belum diaktifkan di versi demo ini.");
+    }
+
+    function exportPDF() {
+      alert("Fitur export PDF belum diaktifkan di versi demo ini.");
+    }
+
+    renderBillingAktif();
+    setInterval(renderBillingAktif, 1000);
+  </script>
 </body>
 </html>
