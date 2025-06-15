@@ -19,6 +19,7 @@
       padding: 30px;
       border-radius: 16px;
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
     h2 {
       text-align: center;
@@ -68,12 +69,13 @@
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 12px;
-      position: absolute;
+      position: fixed;
       top: 20%;
       left: 50%;
       transform: translateX(-50%);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       width: 300px;
+      z-index: 100;
     }
     .form-popup input {
       width: 100%;
@@ -84,6 +86,20 @@
     }
     .form-popup .btn {
       width: 100%;
+    }
+    .form-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.4);
+      z-index: 50;
+    }
+    .form-overlay.active,
+    .form-popup.active {
+      display: block;
     }
     .back-link {
       text-align: center;
@@ -97,6 +113,7 @@
   </style>
 </head>
 <body>
+  <div class="form-overlay" id="formOverlay" onclick="closeForm()"></div>
   <div class="container">
     <h2><i class="fas fa-id-card-alt"></i> Data Petugas</h2>
     <button class="btn" onclick="openForm()"><i class="fas fa-user-plus"></i> Tambah Petugas</button>
@@ -110,18 +127,7 @@
           <th>Aksi</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Diki Andika</td>
-          <td>dikiadmin</td>
-          <td>diki@rajagame.com</td>
-          <td>admin123</td>
-          <td>
-            <button class="action-btn" onclick="editRow(this)" title="Edit"><i class="fas fa-user-edit"></i></button>
-            <button class="action-btn" onclick="deleteRow(this)" title="Hapus"><i class="fas fa-user-times"></i></button>
-          </td>
-        </tr>
-      </tbody>
+      <tbody></tbody>
     </table>
 
     <div class="form-popup" id="formPopup">
@@ -138,8 +144,35 @@
   </div>
 
   <script>
+    const tableBody = document.querySelector("#petugasTable tbody");
+    const petugasList = JSON.parse(localStorage.getItem('petugasList')) || [];
+
+    function displayPetugas() {
+      tableBody.innerHTML = '';
+      petugasList.forEach((p, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${p.nama}</td>
+          <td>${p.username}</td>
+          <td>${p.email}</td>
+          <td>${p.password}</td>
+          <td>
+            <button class="action-btn" onclick="editRow(${index})"><i class="fas fa-pen-to-square"></i></button>
+            <button class="action-btn" onclick="deleteRow(${index})"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
     function openForm() {
-      document.getElementById('formPopup').style.display = 'block';
+      document.getElementById('formPopup').classList.add('active');
+      document.getElementById('formOverlay').classList.add('active');
+    }
+
+    function closeForm() {
+      document.getElementById('formPopup').classList.remove('active');
+      document.getElementById('formOverlay').classList.remove('active');
     }
 
     function addPetugas() {
@@ -149,19 +182,10 @@
       const password = document.getElementById('password').value;
 
       if (nama && username && email && password) {
-        const table = document.getElementById('petugasTable').getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow();
-        newRow.innerHTML = `
-          <td>${nama}</td>
-          <td>${username}</td>
-          <td>${email}</td>
-          <td>${password}</td>
-          <td>
-            <button class="action-btn" onclick="editRow(this)" title="Edit"><i class="fas fa-user-edit"></i></button>
-            <button class="action-btn" onclick="deleteRow(this)" title="Hapus"><i class="fas fa-user-times"></i></button>
-          </td>
-        `;
-        document.getElementById('formPopup').style.display = 'none';
+        petugasList.push({ nama, username, email, password });
+        localStorage.setItem('petugasList', JSON.stringify(petugasList));
+        displayPetugas();
+        closeForm();
         document.getElementById('nama').value = '';
         document.getElementById('username').value = '';
         document.getElementById('email').value = '';
@@ -169,24 +193,23 @@
       }
     }
 
-    function deleteRow(btn) {
-      const row = btn.closest('tr');
-      row.remove();
+    function deleteRow(index) {
+      petugasList.splice(index, 1);
+      localStorage.setItem('petugasList', JSON.stringify(petugasList));
+      displayPetugas();
     }
 
-    function editRow(btn) {
-      const row = btn.closest('tr');
-      const nama = row.cells[0].innerText;
-      const username = row.cells[1].innerText;
-      const email = row.cells[2].innerText;
-      const password = row.cells[3].innerText;
-      document.getElementById('nama').value = nama;
-      document.getElementById('username').value = username;
-      document.getElementById('email').value = email;
-      document.getElementById('password').value = password;
-      document.getElementById('formPopup').style.display = 'block';
-      row.remove();
+    function editRow(index) {
+      const petugas = petugasList[index];
+      document.getElementById('nama').value = petugas.nama;
+      document.getElementById('username').value = petugas.username;
+      document.getElementById('email').value = petugas.email;
+      document.getElementById('password').value = petugas.password;
+      openForm();
+      deleteRow(index);
     }
+
+    displayPetugas();
   </script>
 </body>
 </html>
