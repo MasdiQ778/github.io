@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Admin - Raja Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #d1f2f6, #a0d8eb);
+    }
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      text-align: center;
+      color: #127F99;
+      margin-bottom: 25px;
+    }
+    .profile-info label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+    .profile-info input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+    .profile-info input:focus {
+      outline: none;
+      border-color: #127F99;
+      background-color: #fff;
+      box-shadow: 0 0 0 2px rgba(18, 127, 153, 0.2);
+    }
+    .btn-save {
+      width: 100%;
+      padding: 14px;
+      background-color: #127F99;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn-save:hover {
+      background-color: #0f6a84;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #127F99;
+      font-weight: bold;
+    }
+    .icon {
+      margin-right: 8px;
+      color: #127F99;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><i class="fas fa-user-circle icon"></i>Profil Admin</h2>
+    <div class="profile-info">
+      <label for="username"><i class="fas fa-user icon"></i>Username</label>
+      <input type="text" id="username" value="admin" readonly>
+
+      <label for="email"><i class="fas fa-envelope icon"></i>Email</label>
+      <input type="email" id="email" value="admin@rajagame.com">
+
+      <label for="phone"><i class="fas fa-phone icon"></i>Nomor Telepon</label>
+      <input type="text" id="phone" value="08123456789">
+    </div>
+    <button class="btn-save"><i class="fas fa-save icon"></i>Simpan Perubahan</button>
+    <div class="back-link">
+      <a href="index.html"><i class="fas fa-arrow-left icon"></i>Kembali ke Panel</a>
+    </div>
+  </div>
+</body>
+</html>
