@@ -28,7 +28,13 @@ function checkLogin() {
   }
 }
 
-checkLogin();
+if (window.location.pathname.includes("dashboard.html")) {
+  checkLogin();
+  window.onload = function () {
+    renderActiveBilling();
+    renderHistory();
+  };
+}
 
 function startBilling() {
   const name = document.getElementById("customer").value;
@@ -51,6 +57,7 @@ function startBilling() {
 
 function renderActiveBilling() {
   const wrap = document.getElementById("activeBilling");
+  if (!wrap) return;
   wrap.innerHTML = "";
   let data = JSON.parse(localStorage.getItem("active")) || [];
   data.forEach((item, i) => {
@@ -85,17 +92,12 @@ function finishBilling(index) {
 
 function renderHistory() {
   const tbody = document.querySelector("#billingTable tbody");
+  if (!tbody) return;
   tbody.innerHTML = "";
   const history = JSON.parse(localStorage.getItem("history")) || [];
   history.forEach(item => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td data-label="Nama">${item.name}</td>
-      <td data-label="Durasi">${item.duration}m</td>
-      <td data-label="Harga">Rp ${item.price}</td>
-      <td data-label="Waktu Mulai">${item.time}</td>
-    `;
-    tbody.appendChild(row);
+    const row = `<tr><td>${item.name}</td><td>${item.duration}m</td><td>Rp ${item.price}</td><td>${item.time}</td></tr>`;
+    tbody.innerHTML += row;
   });
 }
 
@@ -122,8 +124,3 @@ function exportPDF() {
   doc.autoTable({ head: [["Nama", "Durasi", "Harga", "Waktu"]], body: rows, startY: 20 });
   doc.save("riwayat_billing.pdf");
 }
-
-window.onload = function() {
-  renderActiveBilling();
-  renderHistory();
-};
