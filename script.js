@@ -5,112 +5,112 @@ const admins = [
   { username: "admin4", password: "1234" },
 ];
 
-function login() {
-  const user = document.getElementById("username").value;
-  const pass = document.getElementById("password").value;
-  const found = admins.find(a => a.username === user && a.password === pass);
-  if (found) {
-    localStorage.setItem("admin", user);
-    window.location.href = "dashboard.html";
-  } else {
-    document.getElementById("error").innerText = "Login gagal!";
-  }
-}
-
 function logout() {
   localStorage.removeItem("admin");
   window.location.href = "index.html";
 }
 
-function checkLogin() {
+function initDashboard() {
   if (!localStorage.getItem("admin")) {
     window.location.href = "index.html";
   }
-}
-
-if (window.location.pathname.includes("dashboard.html")) {
-  checkLogin();
-  window.onload = function () {
-    renderActiveBilling();
-    renderHistory();
-  };
+  updateActiveBilling();
+  updateHistoryTable();
 }
 
 function startBilling() {
   const name = document.getElementById("customer").value;
-  const dur = parseInt(document.getElementById("duration").value);
-  if (!name || !dur) return alert("Lengkapi data!");
+  const minutes = parseInt(document.getElementById("duration").value);
+  if (!name || !minutes) return alert("Isi nama dan durasi!");
+
+  const startTime = new Date();
+  const endTime = new Date(startTime.getTime() + minutes * 60000);
   const pricePerHour = 5000;
-  const now = new Date();
+  const price = Math.round((minutes / 60) * pricePerHour);
+
   const billing = {
     name,
-    duration: dur,
-    time: now.toLocaleTimeString(),
-    endTime: Date.now() + dur * 60000,
-    price: ((dur / 60) * pricePerHour).toFixed(0)
+    duration: minutes,
+    startTime: startTime.toLocaleTimeString(),
+    endTime: endTime.getTime(),
+    price
   };
-  let active = JSON.parse(localStorage.getItem("active")) || [];
+
+  const active = JSON.parse(localStorage.getItem("activeBilling") || "[]");
   active.push(billing);
-  localStorage.setItem("active", JSON.stringify(active));
-  renderActiveBilling();
+  localStorage.setItem("activeBilling", JSON.stringify(active));
+  updateActiveBilling();
 }
 
-function renderActiveBilling() {
-  const wrap = document.getElementById("activeBilling");
-  if (!wrap) return;
-  wrap.innerHTML = "";
-  let data = JSON.parse(localStorage.getItem("active")) || [];
-  data.forEach((item, i) => {
-    const remain = Math.max(0, item.endTime - Date.now());
-    const mins = Math.floor(remain / 60000);
-    const secs = Math.floor((remain % 60000) / 1000);
-    const div = document.createElement("div");
-    div.innerHTML = `<strong>${item.name}</strong><br>
-      Sisa Waktu: ${mins}m ${secs}s<br>
+function updateActiveBilling() {
+  const container = document.getElementById("activeBillingList");
+  container.innerHTML = "";
+  const now = Date.now();
+  const list = JSON.parse(localStorage.getItem("activeBilling") || "[]");
+
+  list.forEach((item, index) => {
+    const remaining = Math.max(0, item.endTime - now);
+    const mins = Math.floor(remaining / 60000);
+    const secs = Math.floor((remaining % 60000) / 1000);
+
+    const card = document.createElement("div");
+    card.className = "billing-card";
+    card.innerHTML = `
+      <strong>${item.name}</strong><br>
+      Sisa: ${mins}m ${secs}s<br>
       Harga: Rp ${item.price}<br>
-      <button onclick="finishBilling(${i})">Selesai</button>`;
-    wrap.appendChild(div);
+      <button onclick="finishBilling(${index})">Selesai</button>
+    `;
+    container.appendChild(card);
   });
-  setTimeout(renderActiveBilling, 1000);
+
+  setTimeout(updateActiveBilling, 1000);
 }
 
 function finishBilling(index) {
-  let active = JSON.parse(localStorage.getItem("active")) || [];
-  const item = active.splice(index, 1)[0];
-  localStorage.setItem("active", JSON.stringify(active));
-  let history = JSON.parse(localStorage.getItem("history")) || [];
+  let active = JSON.parse(localStorage.getItem("activeBilling") || "[]");
+  const finished = active.splice(index, 1)[0];
+  localStorage.setItem("activeBilling", JSON.stringify(active));
+
+  const history = JSON.parse(localStorage.getItem("billingHistory") || "[]");
   history.push({
-    name: item.name,
-    duration: Math.round((item.endTime - Date.now()) / 60000),
-    price: item.price,
-    time: item.time,
+    name: finished.name,
+    duration: finished.duration + "m",
+    price: finished.price,
+    startTime: finished.startTime,
     date: new Date().toLocaleDateString()
   });
-  localStorage.setItem("history", JSON.stringify(history));
-  renderHistory();
+  localStorage.setItem("billingHistory", JSON.stringify(history));
+  updateHistoryTable();
 }
 
-function renderHistory() {
-  const tbody = document.querySelector("#billingTable tbody");
-  if (!tbody) return;
+function updateHistoryTable() {
+  const tbody = document.getElementById("history-table-body");
   tbody.innerHTML = "";
-  const history = JSON.parse(localStorage.getItem("history")) || [];
+  const history = JSON.parse(localStorage.getItem("billingHistory") || "[]");
+
   history.forEach(item => {
-    const row = `<tr><td>${item.name}</td><td>${item.duration}m</td><td>Rp ${item.price}</td><td>${item.time}</td></tr>`;
-    tbody.innerHTML += row;
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.duration}</td>
+      <td>Rp ${item.price}</td>
+      <td>${item.startTime}</td>
+    `;
+    tbody.appendChild(row);
   });
 }
 
-function clearToday() {
+function clearTodayHistory() {
   const today = new Date().toLocaleDateString();
-  let history = JSON.parse(localStorage.getItem("history")) || [];
+  let history = JSON.parse(localStorage.getItem("billingHistory") || "[]");
   history = history.filter(h => h.date !== today);
-  localStorage.setItem("history", JSON.stringify(history));
-  renderHistory();
+  localStorage.setItem("billingHistory", JSON.stringify(history));
+  updateHistoryTable();
 }
 
 function exportExcel() {
-  const ws = XLSX.utils.table_to_sheet(document.getElementById("billingTable"));
+  const ws = XLSX.utils.table_to_sheet(document.getElementById("billing-history"));
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Riwayat");
   XLSX.writeFile(wb, "riwayat_billing.xlsx");
@@ -120,7 +120,8 @@ function exportPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   doc.text("Riwayat Billing Raja Game", 10, 10);
-  const rows = [...document.querySelectorAll("#billingTable tbody tr")].map(tr => [...tr.children].map(td => td.innerText));
+  const rows = [...document.querySelectorAll("#billing-history tbody tr")].map(tr =>
+    [...tr.children].map(td => td.innerText));
   doc.autoTable({ head: [["Nama", "Durasi", "Harga", "Waktu"]], body: rows, startY: 20 });
   doc.save("riwayat_billing.pdf");
 }
