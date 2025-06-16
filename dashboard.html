@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin - Raja Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+  <header>
+    <h1>Panel Billing - Raja Game</h1>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <section class="form-section">
+    <input type="text" id="customer" placeholder="Nama Pelanggan" />
+    <input type="number" id="duration" placeholder="Durasi (menit)" />
+    <button onclick="startBilling()">Mulai Billing</button>
+  </section>
+
+  <section id="activeBilling" class="active-billing"></section>
+
+  <section class="history-section">
+    <h2>Riwayat Billing</h2>
+    <table id="billingTable">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Durasi</th>
+          <th>Waktu Mulai</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="export-btns">
+      <button onclick="exportExcel()">Export Excel</button>
+      <button onclick="exportPDF()">Export PDF</button>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
