@@ -4,15 +4,79 @@ body {
   padding: 0;
   background: #f4f4f4;
 }
-.login-container, .form-section, .history-section, .active-billing {
-  max-width: 500px;
-  margin: auto;
-  padding: 20px;
-  background: #fff;
-  margin-top: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+/* Billing Aktif ditampilkan horizontal */
+.active-billing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
+
+.active-billing div {
+  flex: 0 0 220px;
+  background: #e0f7fa;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Optimasi tabel riwayat */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+}
+
+thead {
+  background: #127F99;
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .active-billing {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  td {
+    padding: 8px;
+    text-align: left;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    color: #127F99;
+  }
+}
+
 .login-container h1, h2, .form-section h2 {
   text-align: center;
   color: #127F99;
