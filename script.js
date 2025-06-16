@@ -4,6 +4,7 @@ const admins = [
   { username: "admin3", password: "1234" },
   { username: "admin4", password: "1234" },
 ];
+
 function login() {
   const user = document.getElementById("username").value;
   const pass = document.getElementById("password").value;
@@ -15,16 +16,20 @@ function login() {
     document.getElementById("error").innerText = "Login gagal!";
   }
 }
+
 function logout() {
   localStorage.removeItem("admin");
   window.location.href = "index.html";
 }
+
 function checkLogin() {
   if (!localStorage.getItem("admin")) {
     window.location.href = "index.html";
   }
 }
+
 checkLogin();
+
 function startBilling() {
   const name = document.getElementById("customer").value;
   const dur = parseInt(document.getElementById("duration").value);
@@ -43,6 +48,7 @@ function startBilling() {
   localStorage.setItem("active", JSON.stringify(active));
   renderActiveBilling();
 }
+
 function renderActiveBilling() {
   const wrap = document.getElementById("activeBilling");
   wrap.innerHTML = "";
@@ -60,6 +66,7 @@ function renderActiveBilling() {
   });
   setTimeout(renderActiveBilling, 1000);
 }
+
 function finishBilling(index) {
   let active = JSON.parse(localStorage.getItem("active")) || [];
   const item = active.splice(index, 1)[0];
@@ -75,15 +82,23 @@ function finishBilling(index) {
   localStorage.setItem("history", JSON.stringify(history));
   renderHistory();
 }
+
 function renderHistory() {
   const tbody = document.querySelector("#billingTable tbody");
   tbody.innerHTML = "";
   const history = JSON.parse(localStorage.getItem("history")) || [];
   history.forEach(item => {
-    const row = `<tr><td>${item.name}</td><td>${item.duration}m</td><td>Rp ${item.price}</td><td>${item.time}</td></tr>`;
-    tbody.innerHTML += row;
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td data-label="Nama">${item.name}</td>
+      <td data-label="Durasi">${item.duration}m</td>
+      <td data-label="Harga">Rp ${item.price}</td>
+      <td data-label="Waktu Mulai">${item.time}</td>
+    `;
+    tbody.appendChild(row);
   });
 }
+
 function clearToday() {
   const today = new Date().toLocaleDateString();
   let history = JSON.parse(localStorage.getItem("history")) || [];
@@ -91,12 +106,14 @@ function clearToday() {
   localStorage.setItem("history", JSON.stringify(history));
   renderHistory();
 }
+
 function exportExcel() {
   const ws = XLSX.utils.table_to_sheet(document.getElementById("billingTable"));
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Riwayat");
   XLSX.writeFile(wb, "riwayat_billing.xlsx");
 }
+
 function exportPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -105,6 +122,7 @@ function exportPDF() {
   doc.autoTable({ head: [["Nama", "Durasi", "Harga", "Waktu"]], body: rows, startY: 20 });
   doc.save("riwayat_billing.pdf");
 }
+
 window.onload = function() {
   renderActiveBilling();
   renderHistory();
