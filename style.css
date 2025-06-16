@@ -93,4 +93,23 @@ body.dark {
 body.dark header, body.dark nav, body.dark footer {
   background-color: #1e1e1e;
 }
+/* Gaya umum untuk semua tautan */
+a {
+  color: #127F99;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0d5f70;
+  text-decoration: underline;
+}
+
+/* Khusus tautan pada bagian kontak/footer */
+footer a {
+  color: #ffffff;
+}
+
+footer a:hover {
+  color: #cceeff;
+}
 
