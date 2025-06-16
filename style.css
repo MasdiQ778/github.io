@@ -24,6 +24,30 @@ nav {
   align-items: center;
   color: white;
 }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0d47a1;
+  padding: 10px 20px;
+  color: white;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav .logo img {
+  height: 40px;
+}
+
+nav .logo span {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+}
 
 nav h1 {
   font-size: 1.5rem;
