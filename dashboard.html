@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard - Raja Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Admin - Raja Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="dashboard-page">
-  <header>
+<body onload="initDashboard()">
+  <header class="header">
     <h1>Panel Billing - Raja Game</h1>
-    <button onclick="logout()">Logout</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
   </header>
 
   <section class="form-section">
-    <input type="text" id="customer" placeholder="Nama Pelanggan" />
-    <input type="number" id="duration" placeholder="Durasi (menit)" />
+    <input type="text" id="customer" placeholder="Nama Pelanggan">
+    <input type="number" id="duration" placeholder="Durasi (menit)">
     <button onclick="startBilling()">Mulai Billing</button>
   </section>
 
-  <section id="activeBilling" class="active-billing"></section>
+  <section class="active-billing">
+    <h2>Billing Aktif</h2>
+    <div id="activeBillingList" class="horizontal-scroll"></div>
+  </section>
 
   <section class="history-section">
     <h2>Riwayat Billing</h2>
-    <table id="billingTable">
-      <thead>
-        <tr>
-          <th>Nama</th>
-          <th>Durasi</th>
-          <th>Harga</th>
-          <th>Waktu Mulai</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div class="table-container">
+      <table id="billing-history">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Durasi</th>
+            <th>Harga</th>
+            <th>Waktu Mulai</th>
+          </tr>
+        </thead>
+        <tbody id="history-table-body"></tbody>
+      </table>
+    </div>
     <div class="export-btns">
       <button onclick="exportExcel()">Export Excel</button>
       <button onclick="exportPDF()">Export PDF</button>
-      <button onclick="clearToday()">Hapus Hari Ini</button>
+      <button onclick="clearTodayHistory()">Hapus Hari Ini</button>
     </div>
   </section>
 
