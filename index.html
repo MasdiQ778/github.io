@@ -2,46 +2,65 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MasdiQ | Blog Teknologi</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MasdiQ Blog</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <<nav>
-  <div class="logo">
-    <img src="assets/images/logo-masdiq.png" alt="Logo MasdiQ">
-    <span>MasdiQ</span>
-  </div>
-  <ul>
-    <li><a href="index.html">Beranda</a></li>
-    <li><a href="tentang.html">Tentang</a></li>
-    <li><a href="kontak.html">Kontak</a></li>
-  </ul>
-</nav>
-    <div class="hero">
-      <h2>Blog Teknologi & Informasi</h2>
-      <p>Menyajikan berita dan ulasan terkini seputar dunia teknologi.</p>
+  <nav>
+    <div class="logo">
+      <img src="assets/images/logo-masdiq.png" alt="Logo MasdiQ">
+      <span>MasdiQ</span>
     </div>
-  </header>
+    <ul>
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="tentang.html">Tentang</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
 
   <main>
-    <section class="posts">
-      <article>
-        <img src="assets/images/tech1.jpg" alt="Teknologi" />
-        <h3><a href="posts/artikel-1.html">Apa Itu IP Statis? Penjelasan Lengkap</a></h3>
-        <p>IP statis adalah alamat IP yang tidak berubah dari waktu ke waktu...</p>
-      </article>
-      <article>
-  <img src="assets/images/cloud.jpg" alt="Ilustrasi Cloud Computing">
-  <h3><a href="posts/artikel-2.html">Apa Itu Cloud Computing? Cara Kerja dan Manfaatnya</a></h3>
-  <p>Pelajari apa itu komputasi awan, bagaimana cara kerjanya, serta manfaat dan contoh penggunaannya di kehidupan modern.</p>
-</article>
-  </section>
+    <input id="searchInput" type="text" placeholder="Cari artikel..." />
+
+    <article>
+      <img src="assets/images/tech1.jpg" alt="IP Statis">
+      <h3><a href="posts/artikel-1.html">Apa Itu IP Statis?</a></h3>
+      <p>Penjelasan lengkap mengenai IP statis dan cara kerjanya dalam jaringan modern.</p>
+    </article>
+
+    <article>
+      <img src="assets/images/cloud.jpg" alt="Cloud Computing">
+      <h3><a href="posts/artikel-2.html">Apa Itu Cloud Computing?</a></h3>
+      <p>Pelajari apa itu komputasi awan, bagaimana cara kerjanya, serta manfaatnya di kehidupan digital.</p>
+    </article>
   </main>
 
   <footer>
-    <p>© 2025 MasdiQ. Semua hak dilindungi.</p>
+    &copy; 2025 MasdiQ Blog | Semua hak dilindungi
   </footer>
+
+  <script>
+    const toggleTheme = () => {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    };
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+    };
+
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+      searchInput.addEventListener("keyup", () => {
+        const filter = searchInput.value.toLowerCase();
+        const articles = document.querySelectorAll("article");
+        articles.forEach(article => {
+          const title = article.textContent.toLowerCase();
+          article.style.display = title.includes(filter) ? "" : "none";
+        });
+      });
+    }
+  </script>
 </body>
 </html>
