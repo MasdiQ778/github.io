@@ -4,7 +4,65 @@ body {
   padding: 0;
   background: #f4f4f4;
 }
-/* Billing Aktif ditampilkan horizontal */
+
+.login-container, .form-section, .history-section, .active-billing {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-container h1, h2, .form-section h2 {
+  text-align: center;
+  color: #127F99;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #127F99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0f657a;
+}
+
+.error-msg {
+  color: red;
+  text-align: center;
+}
+
+header {
+  background: #127F99;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.export-btns button {
+  width: auto;
+  margin: 5px;
+  background: #127F99;
+}
+
+/* Billing Aktif horizontal */
 .active-billing {
   display: flex;
   flex-wrap: wrap;
@@ -66,7 +124,6 @@ thead {
   td {
     padding: 8px;
     text-align: left;
-    position: relative;
   }
 
   td::before {
@@ -75,52 +132,4 @@ thead {
     display: block;
     color: #127F99;
   }
-}
-
-.login-container h1, h2, .form-section h2 {
-  text-align: center;
-  color: #127F99;
-}
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-button {
-  width: 100%;
-  padding: 10px;
-  background: #127F99;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-button:hover {
-  background: #0f657a;
-}
-.error-msg {
-  color: red;
-  text-align: center;
-}
-header {
-  background: #127F99;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-.export-btns button {
-  width: auto;
-  margin: 5px;
-  background: #127F99;
-}
-.active-billing div {
-  margin-top: 10px;
-  padding: 10px;
-  background: #e0f7fa;
-  border-radius: 10px;
-  position: relative;
 }
