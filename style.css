@@ -1,3 +1,4 @@
+/* Reset & Base */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -5,74 +6,224 @@ body {
   background: #f4f4f4;
 }
 
-.login-container, .form-section, .history-section {
+/* Login Page */
+.login-page .login-container {
   max-width: 500px;
-  margin: auto;
-  padding: 20px;
+  margin: 80px auto;
+  padding: 30px;
   background: #fff;
-  margin-top: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.login-container h1, h2 {
+.login-container h1 {
   text-align: center;
   color: #127F99;
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
-input {
+.login-container h2 {
+  text-align: center;
+  color: #127F99;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.login-container input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-button {
+.login-container button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: #127F99;
   color: #fff;
   border: none;
   border-radius: 5px;
-  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-button:hover {
+.login-container button:hover {
   background: #0f657a;
 }
 
 .error-msg {
   color: red;
   text-align: center;
+  margin-top: 10px;
 }
 
+/* Header & Logout */
 header {
   background: #127F99;
   color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-.export-btns button {
-  width: auto;
-  margin: 5px;
-  background: #127F99;
-}
-
-.active-billing {
+  padding: 15px 20px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+header button {
+  background-color: #ffffff;
+  color: #127F99;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+header button:hover {
+  background-color: #e6f8fa;
+}
+
+/* Form Section */
+.form-section {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-section input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.form-section button {
+  width: 100%;
+  padding: 12px;
+  background: #127F99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-section button:hover {
+  background: #0f657a;
+}
+
+/* Active Billing Horizontal */
+.active-billing {
+  max-width: 100%;
+  margin: 20px auto;
   overflow-x: auto;
-  gap: 10px;
-  padding: 10px;
+  display: flex;
+  gap: 15px;
+  padding: 10px 20px;
 }
 
 .active-billing div {
-  min-width: 220px;
+  min-width: 250px;
+  padding: 15px;
   background: #e0f7fa;
-  padding: 10px;
   border-radius: 10px;
-  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  font-size: 14px;
+}
+
+.active-billing button {
+  margin-top: 10px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.active-billing button:hover {
+  background: #b71c1c;
+}
+
+/* Riwayat Table */
+.history-section {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+.history-section h2 {
+  text-align: center;
+  color: #127F99;
+  margin-bottom: 15px;
+}
+
+.history-section table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.history-section th, .history-section td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.history-section th {
+  background-color: #127F99;
+  color: white;
+  font-weight: bold;
+}
+
+.history-section tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Export Buttons */
+.export-btns {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.export-btns button {
+  background: #127F99;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.export-btns button:hover {
+  background: #0f657a;
 }
