@@ -1,8 +1,8 @@
 :root {
   --primary: #0D47A1;
   --light: #ffffff;
-  --gray: #f2f2f2;
-  --text: #333;
+  --gray: #f4f4f4;
+  --text: #222;
 }
 
 * {
@@ -19,14 +19,14 @@ body {
 
 .container {
   width: 90%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
 }
 
 header {
   background: var(--primary);
   color: white;
-  padding: 15px 0;
+  padding: 12px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -43,14 +43,14 @@ header .container {
 }
 
 .logo img {
-  height: 36px;
-  width: 36px;
+  height: 32px;
+  width: 32px;
   object-fit: contain;
 }
 
 .logo span {
+  font-size: 1.3rem;
   font-weight: bold;
-  font-size: 1.2rem;
 }
 
 nav a {
@@ -68,16 +68,16 @@ nav a:hover {
   width: 100%;
   padding: 12px;
   margin: 20px 0;
-  border-radius: 8px;
   border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .card {
-  background: var(--light);
-  border-radius: 10px;
+  background: white;
   padding: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
 
 .card img {
@@ -92,18 +92,23 @@ nav a:hover {
 }
 
 .card p {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .card a {
   color: var(--primary);
-  font-weight: bold;
   text-decoration: none;
+  font-weight: 600;
+}
+
+.card a:hover {
+  text-decoration: underline;
 }
 
 footer {
+  background: var(--primary);
+  color: white;
   text-align: center;
-  padding: 20px 0;
-  background: #eaeaea;
-  margin-top: 30px;
+  padding: 15px 0;
+  margin-top: 40px;
 }
