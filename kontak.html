@@ -2,143 +2,144 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kontak | MasdiQ</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* RESPONSIF DAN ANIMASI */
+    :root {
+      --primary: #1e3a8a; /* biru tua */
+      --bg-light: #f3f4f6;
+      --bg-dark: #111827;
+      --text-light: #1f2937;
+      --text-dark: #f9fafb;
+      --card-light: #ffffff;
+      --card-dark: #1f2937;
+    }
+
     body {
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
-      animation: fadeIn 0.6s ease;
+      padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .navbar {
-      background-color: #0b4f6c;
-      color: #fff;
-      padding: 1rem 0;
-    }
-
-    .navbar .container {
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      margin: 0;
       font-size: 1.5rem;
+      font-weight: bold;
     }
 
-    nav a {
-      color: #fff;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 500;
+    .mode-toggle {
+      background: white;
+      color: var(--primary);
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    nav a.active,
-    nav a:hover {
-      text-decoration: underline;
+    main {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: var(--card-light);
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
     }
 
-    .contact {
-      background: #ffffff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    body.dark main {
+      background-color: var(--card-dark);
+    }
+
+    .social-links {
       margin-top: 2rem;
     }
 
-    .contact h2 {
-      color: #127F99;
+    .social-links p {
       margin-bottom: 1rem;
     }
 
-    .contact-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .contact-list li {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .contact-list a {
-      color: #127F99;
+    .social-links a {
+      margin: 0 12px;
+      font-size: 1.8rem;
+      color: var(--primary);
       text-decoration: none;
+      transition: color 0.3s;
     }
 
-    .contact-list a:hover {
-      color: #0d5f70;
-      text-decoration: underline;
+    .social-links a:hover {
+      color: #2563eb;
     }
 
-    .footer {
+    footer {
       text-align: center;
-      padding: 1rem;
-      background-color: #0b4f6c;
-      color: #fff;
       margin-top: 3rem;
-    }
-
-    /* RESPONSIVE UNTUK MOBILE */
-    @media (max-width: 600px) {
-      .navbar .container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 10px 8px 0;
-      }
-
-      .contact {
-        padding: 1.5rem;
-      }
+      font-size: 0.9rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">MasdiQ</h1>
-      <nav>
-        <a href="index.html">Beranda</a>
-        <a href="tentang.html">Tentang</a>
-        <a href="kontak.html" class="active">Kontak</a>
-      </nav>
-    </div>
+  <header>
+    <div class="logo">MasdiQ</div>
+    <button class="mode-toggle" onclick="toggleMode()">🌙 Mode</button>
   </header>
 
-  <main class="container">
-    <section class="contact">
-      <h2>Kontak Kami</h2>
-      <p>Untuk saran, kritik, atau kerja sama, kamu bisa menghubungi kami melalui:</p>
-      <ul class="contact-list">
-        <li><strong>Email:</strong> <a href="mailto:admin@masdiq.tech">admin@masdiq.tech</a></li>
-        <li><strong>Instagram:</strong> <a href="https://instagram.com/masdiqblog" target="_blank">@masdiqblog</a></li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/masdiq" target="_blank">github.com/masdiq</a></li>
-      </ul>
-    </section>
+  <main>
+    <h2>Hubungi Saya</h2>
+    <p>Terima kasih telah mengunjungi halaman kontak MasdiQ.  
+    Jika kamu memiliki pertanyaan, saran, atau ingin bekerja sama,  
+    silakan hubungi saya melalui platform yang tersedia di bawah ini.</p>
+
+    <div class="social-links">
+      <p>Pilih platform kontak:</p>
+      <a href="https://wa.me/6281234567890" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/masdiqchannel" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://instagram.com/masdiqblog" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/masdiqdev" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 MasdiQ. Semua hak dilindungi.</p>
+  <footer>
+    &copy; 2025 MasdiQ. Semua Hak Dilindungi.
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+
+  <!-- Start Tawk.to Script -->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/YOUR_UNIQUE_ID/1hxxxxx'; // Ganti dengan ID dari tawk.to
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!-- End Tawk.to Script -->
 </body>
 </html>
