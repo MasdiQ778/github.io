@@ -4,104 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MasdiQ Blog</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="logo.png"/>
 </head>
-<script>
-  // Toggle Dark Mode
-  const toggleTheme = () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-  };
-
-  // Aktifkan kembali dark mode jika disimpan
-  window.onload = () => {
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark");
-    }
-
-    // Efek fade-in saat scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll("article").forEach(el => {
-      el.classList.add("fade");
-      observer.observe(el);
-    });
-  };
-
-  // Fungsi pencarian artikel
-  const searchInput = document.getElementById("searchInput");
-  if (searchInput) {
-    searchInput.addEventListener("keyup", () => {
-      const filter = searchInput.value.toLowerCase();
-      const articles = document.querySelectorAll("article");
-      articles.forEach(article => {
-        const title = article.textContent.toLowerCase();
-        article.style.display = title.includes(filter) ? "" : "none";
-      });
-    });
-  }
-</script>
-  <body>
-  <nav>
-    <div class="logo">
-      <img src="assets/images/logo-masdiq.png" alt="Logo MasdiQ">
-      <span>MasdiQ</span>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="logo.png" alt="MasdiQ Logo" />
+        <span>MasdiQ</span>
+      </div>
+      <nav>
+        <a href="#">Beranda</a>
+        <a href="#">Tentang</a>
+        <a href="#">Kontak</a>
+      </nav>
     </div>
-    <ul>
-      <li><a href="index.html">Beranda</a></li>
-      <li><a href="tentang.html">Tentang</a></li>
-      <li><a href="kontak.html">Kontak</a></li>
-    </ul>
-  </nav>
+  </header>
 
-  <main>
-    <input id="searchInput" type="text" placeholder="Cari artikel..." />
+  <main class="container">
+    <input type="text" placeholder="Cari artikel..." class="search-input" />
 
-    <article>
-      <img src="assets/images/tech1.jpg" alt="IP Statis">
-      <h3><a href="posts/artikel-1.html">Apa Itu IP Statis?</a></h3>
-      <p>Penjelasan lengkap mengenai IP statis dan cara kerjanya dalam jaringan modern.</p>
-    </article>
+    <div class="card">
+      <img src="https://source.unsplash.com/800x400/?technology,laptop" alt="Artikel 1"/>
+      <h3>Belajar AI untuk Pemula</h3>
+      <p>Pelajari dasar-dasar Artificial Intelligence secara gratis dan mudah dimengerti.</p>
+      <a href="#">Baca Selengkapnya</a>
+    </div>
 
-    <article>
-      <img src="assets/images/cloud.jpg" alt="Cloud Computing">
-      <h3><a href="posts/artikel-2.html">Apa Itu Cloud Computing?</a></h3>
-      <p>Pelajari apa itu komputasi awan, bagaimana cara kerjanya, serta manfaatnya di kehidupan digital.</p>
-    </article>
+    <!-- Tambahkan artikel lainnya di sini -->
   </main>
 
   <footer>
-    &copy; 2025 MasdiQ Blog | Semua hak dilindungi
+    <div class="container">
+      &copy; 2025 MasdiQ. All rights reserved.
+    </div>
   </footer>
-
-  <script>
-    const toggleTheme = () => {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-    };
-    window.onload = () => {
-      if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark");
-      }
-    };
-
-    const searchInput = document.getElementById("searchInput");
-    if (searchInput) {
-      searchInput.addEventListener("keyup", () => {
-        const filter = searchInput.value.toLowerCase();
-        const articles = document.querySelectorAll("article");
-        articles.forEach(article => {
-          const title = article.textContent.toLowerCase();
-          article.style.display = title.includes(filter) ? "" : "none";
-        });
-      });
-    }
-  </script>
 </body>
 </html>
