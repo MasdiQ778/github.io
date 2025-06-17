@@ -1,115 +1,109 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f7f9fc;
-  color: #000000;
+:root {
+  --primary: #0D47A1;
+  --light: #ffffff;
+  --gray: #f2f2f2;
+  --text: #333;
 }
-nav {
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--gray);
+  color: var(--text);
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0d47a1;
-  padding: 10px 20px;
-  color: white;
 }
-nav .logo {
+
+.logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-nav .logo img {
-  height: 40px;
+
+.logo img {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
 }
-nav .logo span {
+
+.logo span {
   font-weight: bold;
-  font-size: 1.2em;
-  color: white;
-}
-ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-}
-ul li a {
-  color: white;
-  text-decoration: none;
-}
-main {
-  padding: 20px;
-}
-article {
-  background: white;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-article img {
-  max-width: 100%;
-  border-radius: 8px;
-}
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin: 15px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-footer {
-  text-align: center;
-  padding: 15px;
-  background: #0d47a1;
-  color: white;
-}
-body.dark {
-  background: #121212;
-  color: #f0f0f0;
-}
-body.dark nav, body.dark footer {
-  background: #1e1e1e;
-}
-body.dark article {
-  background: #222;
-}
-body.dark a {
-  color: #90caf9;
-}
-/* Efek fade-in untuk artikel */
-.fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
-}
-.fade.visible {
-  opacity: 1;
-  transform: translateY(0);
+  font-size: 1.2rem;
 }
 
-/* Dark Mode support (tambahkan sesuai kebutuhan) */
-body.dark {
-  background-color: #121212;
-  color: #ffffff;
-}
-body.dark header, body.dark nav, body.dark footer {
-  background-color: #1e1e1e;
-}
-/* Gaya umum untuk semua tautan */
-a {
-  color: #127F99;
+nav a {
+  color: white;
   text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
 }
 
-a:hover {
-  color: #0d5f70;
+nav a:hover {
   text-decoration: underline;
 }
 
-/* Khusus tautan pada bagian kontak/footer */
-footer a {
-  color: #000000;
+.search-input {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-footer a:hover {
-  color: #cceeff;
+.card {
+  background: var(--light);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.card p {
+  margin-bottom: 12px;
+}
+
+.card a {
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background: #eaeaea;
+  margin-top: 30px;
+}
