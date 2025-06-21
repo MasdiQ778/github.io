@@ -1,0 +1,183 @@
+<!-- file: riwayat.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riwayat Transaksi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --main-color: #127F99; }
+    body {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+      background: #ebecf0;
+    }
+    header { text-align: center; padding: 0px; }
+    .header-box {
+      background-color: var(--main-color);
+      height: 50px;
+      color: #fff;
+      text-align: left;
+      padding: 12px 15px;
+    }
+    .header-box img { width: 25px; margin-right: 5px; }
+    .notekiossaldo {
+      background: #fff;
+      padding: 15px;
+      font-size: 12px;
+      margin: 10px 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .notekiossaldo img {
+      width: 40px;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+    .transaksiBox {
+      background: #fff;
+      margin: 10px 15px;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .transaksiBox img {
+      width: 60px;
+      margin-right: 15px;
+      border-radius: 10px;
+    }
+    .transaksiBox ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .transaksiBox h {
+      font-size: 13px;
+    }
+    .badge {
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      position: absolute;
+      right: 5%;
+      margin-top: -95px;
+      min-width: 80px;
+      text-align: center;
+    }
+    .badge-hijau { color: #28a745; background: #fff; }
+    .badge-merah { color: #dc3545; background: #fff; }
+    .badge-orange { color: #ffc107; background: #fff; }
+    .empty-state {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .empty-state img {
+      max-width: 120px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-box">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsO_gmokph2UmFKu-blh55NsOve2xUGwJCg1kaDuBZZCXEdwqNiPvewN215UtaKf0cNdkkTCGQq5KmO7eN2Sl6fla7rifTjWbNXG-z-wet3MNul02ETodc9gYBVX-sclVkZQ21UUxYR11JRKwaCBIGqhvNra5J9g_Hc7hyj2GMmovUn0DLOTL6GeBxdCct/s1600/1000013783-removebg-preview%20%281%29.png" />
+      Riwayat Transaksi
+    </div>
+    <div class="notekiossaldo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghdSQ3viBvtsd8nC4cwEuGmzl632kExmwaNLm-URPWfMO9dkIKwQyBzR6MBtJNm-4G8NySb33a3yOrMO1DKThEqIzuNGq5w0F9QTT7ghzaReu9aRu4nZAOdbRzi0In3Aidgylc7hdlpec4OR3mdjjCCDy9BZgYjFy2FYyxhSxeEV2vXlYcOnkszj6IL6UE/s1600/1000013219-removebg-preview.png" />
+      Jika ada kendala dalam transaksi silahkan hubungi CS Service ya kak.
+    </div>
+  </header>
+
+  <div id="transaksiList" style="margin-top:80px; padding-bottom:50px;">
+    <div class="empty-state">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFTuYf4ss98_uPc-W4wN0z-VZMeLnaJ0XIeaNL3KwqNyUp00ICscnd0jV7zD_CDk00qFIRMVYjtVrSLrv5x48s9VX3a5i3GHdeI_yZ4rtG_s3hcaHPKelrwVTfoJVFtpwyWft1nE91wCxJ1RMvsxrXZWqGPTC1bGjVzIgxKqYZIbvksTv3HJkx3bPydljS/s1600/1000013825-removebg-preview.png" alt="No Transactions">
+      <p style="color:#555;">Memuat data transaksi...</p>
+    </div>
+  </div>
+
+  <script>
+    const token = "eyJhcHAiOiIxNzQ4MDciLCJhdXRoIjoiMjAyNTA2MDciLCJzaWduIjoicSswd0lQTmxGbFpuZ0tkUW9MMUJmdz09In0==";
+    const params = new URLSearchParams(window.location.search);
+    const tokenUser = params.get("token_user");
+    const idUser = params.get("id_user");
+
+    if (!tokenUser || !idUser) {
+      document.getElementById("transaksiList").innerHTML = `
+        <div class="empty-state">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFTuYf4ss98_uPc-W4wN0z-VZMeLnaJ0XIeaNL3KwqNyUp00ICscnd0jV7zD_CDk00qFIRMVYjtVrSLrv5x48s9VX3a5i3GHdeI_yZ4rtG_s3hcaHPKelrwVTfoJVFtpwyWft1nE91wCxJ1RMvsxrXZWqGPTC1bGjVzIgxKqYZIbvksTv3HJkx3bPydljS/s1600/1000013825-removebg-preview.png" />
+          <p style="color:#555;">Token user atau ID user tidak ditemukan di URL.</p>
+        </div>`;
+    } else {
+      const transaksiApiUrl = `https://openapi.bukaolshop.net/v1/user/transaksi?token=${token}&token_user=${tokenUser}&id_user=${idUser}`;
+      let currentPage = 1;
+      let totalPages = 4;
+      let transaksiResponse = { data: [] };
+
+      function fetchTransactions() {
+        if (currentPage > totalPages) {
+          renderTransaksi(transaksiResponse.data);
+          return;
+        }
+
+        const apiUrlWithPage = transaksiApiUrl + "&page=" + currentPage;
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", apiUrlWithPage, true);
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            const newTransaksi = JSON.parse(this.responseText);
+            transaksiResponse.data = transaksiResponse.data.concat(newTransaksi.data || []);
+            currentPage++;
+            fetchTransactions();
+          }
+        };
+        xhr.send();
+      }
+
+      function renderTransaksi(data) {
+        const el = document.getElementById("transaksiList");
+        el.innerHTML = "";
+
+        if (!data || data.length === 0) {
+          el.innerHTML = `
+            <div class="empty-state">
+              <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFTuYf4ss98_uPc-W4wN0z-VZMeLnaJ0XIeaNL3KwqNyUp00ICscnd0jV7zD_CDk00qFIRMVYjtVrSLrv5x48s9VX3a5i3GHdeI_yZ4rtG_s3hcaHPKelrwVTfoJVFtpwyWft1nE91wCxJ1RMvsxrXZWqGPTC1bGjVzIgxKqYZIbvksTv3HJkx3bPydljS/s1600/1000013825-removebg-preview.png" />
+              <p style="color:#555;">Belum ditemukan transaksi.</p>
+            </div>`;
+          return;
+        }
+
+        data.forEach((trx) => {
+          const box = document.createElement("div");
+          box.className = "transaksiBox";
+          if (trx.url_gambarproduk) {
+            const img = document.createElement("img");
+            img.src = trx.url_gambarproduk;
+            box.appendChild(img);
+          }
+          const list = document.createElement("ul");
+          list.innerHTML = `
+            <li><strong>${trx.nama_barang}</strong></li>
+            <li><p>${trx.tanggal}</p></li>
+            <li><p>${trx.nomor_pembayaran}</p></li>
+          `;
+          box.appendChild(list);
+          box.onclick = () => window.open(trx.link_transaksi, "_blank");
+          el.appendChild(box);
+        });
+      }
+
+      fetchTransactions();
+    }
+  </script>
+</body>
+</html>
